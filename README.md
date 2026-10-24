@@ -204,7 +204,7 @@ The system uses computer vision to analyze supported video events and assist sec
 | **Reasoning layer** | Gemma 4 (local, via Hugging Face Transformers or llama.cpp) | Second-stage check on flagged events only, e.g. "in vain or just reading?", "suspicious or waiting?" |
 | **Backend** | FastAPI + SQLite | REST API, WebSocket live updates, and storage for zones, events and the suspicious-activity log |
 | **Frontend** | React + Tailwind | Live dashboard with zone status cards, timers, alert feed and analytics |
-| **Alerts** | Telegram Bot API | Real-time alerts to the manager's phone, with a cooldown to avoid spam |
+
 
 ## 7. Database Design
 
