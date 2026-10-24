@@ -19,14 +19,12 @@
 
 1. [Problem Statement](#1-problem-statement)
 2. [Target Users](#2-target-users)
-3. [Problem Understanding & Approach](#3-problem-understanding--approach)
-4. [Proposed Solution](#4-proposed-solution)
-5. [Key Features](#5-key-features)
-6. [System Workflow](#6-system-workflow)
-7. [AI & Computer Vision Approach](#7-ai--computer-vision-approach)
-8. [Tech](#8-tech)
-9. [Database Design](#9-database-design)
-10. [Expected Impact](#10-expected-impact)
+3. [Proposed Solution](#3-proposed-solution)
+4. [System Workflow](#4-system-workflow)
+5. [AI & Computer Vision Approach](#5-ai--computer-vision-approach)
+6. [Tech](#6-tech)
+7. [Database Design](#7-database-design)
+8. [Expected Impact](#8-expected-impact)
 
 ---
 
@@ -34,7 +32,7 @@
 
 ### Problem Title
 
-**AI-Powered Intelligent Video Surveillance & Real-Time Threat Detection**
+**AI-Powered Intelligent Video Surveillance & Real Time Threat Detection**
 
 ### Problem Description
 
@@ -138,32 +136,8 @@ flowchart TD
 
 ---
 
-## 3. Problem Understanding & Approach
 
-### Root Cause Analysis
-
-| Problem Area | Root Cause | Impact |
-|---|---|---|
-| Manual CCTV Monitoring | Operators cannot continuously watch every camera. | Important incidents may go unnoticed. |
-| Delayed Threat Detection | Suspicious activities are identified late. | Slower emergency response. |
-| Stampede Prevention | Crowd density is not automatically analyzed. | Overcrowding and safety risks. |
-| Parking Violations | Vehicle activity requires manual observation. | Inefficient parking management. |
-| Poor Video Analysis | Large amounts of footage require manual review. | Time-consuming investigations. |
-| Limited Real-Time Insights | Traditional CCTV primarily records footage. | Reactive rather than proactive security. |
-
-### Solution Strategy
-
-1. **Video Ingestion:** Connect existing CCTV cameras and receive video streams.
-2. **AI Video Analysis:** Analyze supported camera feeds using computer vision.
-3. **Threat Detection:** Identify predefined suspicious activities and potential safety incidents.
-4. **Stampede Prevention:** Estimate crowd density and detect overcrowding in supported views.
-5. **Parking Intelligence:** Detect predefined parking violations and unauthorized parking.
-6. **Alerts and Dashboard:** Display relevant alerts, event summaries, and monitoring insights.
-7. **Human Verification:** Allow authorized personnel to review alerts and decide appropriate actions.
-
----
-
-## 4. Proposed Solution
+## 3. Proposed Solution
 
 LENZ transforms existing CCTV infrastructure into an intelligent monitoring system that helps security teams identify important events faster.
 
@@ -182,22 +156,7 @@ LENZ transforms existing CCTV infrastructure into an intelligent monitoring syst
 
 ---
 
-## 5. Key Features
-
-| Feature | Description |
-|---|---|
-| Intelligent Threat Detection | Identifies supported suspicious activities. |
-| Stampede Prevention | Estimates crowd density and highlights overcrowding. |
-| Parking Intelligence | Detects predefined parking violations. |
-| Real-Time Alerts | Notifies authorized personnel about detected events. |
-| Event Summaries | Organizes important incidents for easier review. |
-| Centralized Dashboard | Provides a unified monitoring interface. |
-| Multi-Location Support | Designed for different CCTV-enabled facilities. |
-| Human-in-the-Loop | Keeps security personnel involved in incident verification. |
-
----
-
-## 6. System Workflow
+## 4. System Workflow
 
 LENZ transforms conventional CCTV infrastructure into an AI-assisted surveillance system. It processes supported camera feeds, analyzes video frames, detects predefined events, and provides alerts and summaries to help security personnel make informed decisions.
 
@@ -220,7 +179,7 @@ flowchart LR
 
 ---
 
-## 7. AI & Computer Vision Approach
+## 5. AI & Computer Vision Approach
 
 The system uses computer vision to analyze supported video events and assist security personnel.
 
@@ -235,7 +194,7 @@ The system uses computer vision to analyze supported video events and assist sec
 
 ---
 
-## Tech Stack
+## 6. Tech Stack
 
 | Layer | Technology | Role in SmartSpace |
 |---|---|---|
@@ -249,7 +208,7 @@ The system uses computer vision to analyze supported video events and assist sec
 | **Frontend** | React + Tailwind | Live dashboard with zone status cards, timers, alert feed and analytics |
 | **Alerts** | Telegram Bot API | Real-time alerts to the manager's phone, with a cooldown to avoid spam |
 
-## 9. Database Design
+## 7. Database Design
 
 The database stores application information and event metadata rather than requiring every video frame to be stored permanently.
 
@@ -265,7 +224,7 @@ The database stores application information and event metadata rather than requi
 
 ---
 
-## 10. Expected Impact
+## 8. Expected Impact
 
 | Area | Expected Benefit |
 |---|---|
