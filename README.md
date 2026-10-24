@@ -135,26 +135,6 @@ flowchart TD
 | **Security Monitoring** | Identify predefined security-related events for human review. |
 | **Occupancy Monitoring** | Help facility more efficiently and support faster, more informed responses. |
 
-## Existing Gap vs LENZ AI Improvement
-
-The following comparison illustrates the intended capabilities of traditional CCTV monitoring and the proposed LENZ AI Surveillance System. Scores are illustrative design targets, not measured benchmark results.
-
-```mermaid
-xychart-beta
-    title "Without LENZ AI (Traditional CCTV)"
-    x-axis ["Threat Detection", "Crowd Monitoring", "Parking", "Event Review", "Response"]
-    y-axis "Capability Score (%)" 0 --> 100
-    bar [25, 20, 30, 15, 10]
-```
-
-```mermaid
-xychart-beta
-    title "With LENZ AI (Proposed System)"
-    x-axis ["Threat Detection", "Crowd Monitoring", "Parking", "Event Review", "Response"]
-    y-axis "Capability Score (%)" 0 --> 100
-    bar [85, 80, 75, 90, 70]
-```
-
 ### Existing System Limitations vs Impact of LENZ AI
 
 | Limitation in Existing Systems | Impact on Security Teams and Facility Managers |
