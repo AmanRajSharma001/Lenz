@@ -105,23 +105,100 @@ potential problems faster and make informed decisions.
 | Security teams react after receiving reports. | Intelligent monitoring supports faster, more informed responses. |
 
 ---
+## 3. Target Users
 
-### Problem Objective
+The Lenz system is designed for organizations that already use CCTV
+cameras and want to improve surveillance through AI-powered monitoring.
 
-The primary objective of Lenz is to develop an AI-powered video
-monitoring platform that converts camera feeds into meaningful,
-actionable information.
+```mermaid
+flowchart TD
+flowchart TD
+    A["LENZ AI Surveillance System"]
 
-The system aims to:
+    A --> B["Railway Stations"]
+    A --> C["Shopping Malls"]
+    A --> D["Hospitals"]
+    A --> E["Educational Institutions"]
+    A --> F["Parking Facilities"]
+    A --> G["Restaurants and Offices"]
 
-1. Detect predefined suspicious activities and potential security
-   incidents.
-2. Identify crowd density and overcrowding in monitored areas.
-3. Detect parking-related issues in supported camera views.
-4. Generate alerts when configured detection conditions are met.
-5. Provide a centralized interface for monitoring events and alerts.
-6. Reduce dependence on continuous manual observation.
-7. Help security personnel prioritize events that require attention.
+    B --> H["Crowd Monitoring"]
+    C --> I["Crowd and Security Monitoring"]
+    D --> J["Occupancy Monitoring"]
+    E --> K["Restricted Area Monitoring"]
+    F --> L["Vehicle and Parking Detection"]
+    G --> M["Suspicious Activity Alerts"]
 
-Lenz is designed to assist human operators rather than replace
-professional security personnel.
+    style A fill:#EDE9FE,stroke:#8B5CF6,color:#222
+    style B fill:#EDE9FE,stroke:#8B5CF6,color:#222
+    style C fill:#EDE9FE,stroke:#8B5CF6,color:#222
+    style D fill:#EDE9FE,stroke:#8B5CF6,color:#222
+    style E fill:#EDE9FE,stroke:#8B5CF6,color:#222
+    style F fill:#EDE9FE,stroke:#8B5CF6,color:#222
+    style G fill:#EDE9FE,stroke:#8B5CF6,color:#222
+---
+### Target Market Analysis
+
+| Category | Details |
+|---|---|
+| **Geographical Focus** | India 🇮🇳 — with potential for global adoption |
+| **Primary Market** | Organizations using existing CCTV infrastructure |
+| **Target Customers** | Railway stations, malls, hospitals, educational institutions, offices, and parking facilities |
+| **Existing Infrastructure** | CCTV cameras and compatible video feeds |
+| **Core Opportunity** | Transforming passive video surveillance into AI-assisted monitoring |
+| **Primary Objective** | Improve situational awareness and help identify important events faster |
+| **Initial Deployment Strategy** | Pilot deployment in a controlled environment with a limited number of cameras |
+| **Expansion Strategy** | Extend to additional camera feeds and monitoring locations after validation |
+
+---
+
+### User Segmentation
+
+| User Segment | Description | Key Needs |
+|---|---|---|
+| **Security Personnel** | Personnel responsible for monitoring camera feeds and responding to incidents. | Event alerts, suspicious activity review, and faster incident identification. |
+| **Railway Authorities** | Teams responsible for station safety and passenger movement. | Crowd density estimation and overcrowding alerts. |
+| **Mall Administrators** | Managers overseeing public areas and parking facilities. | Crowd monitoring, vehicle detection, and security alerts. |
+| **Hospital Administrators** | Teams managing patient waiting areas and public corridors. | Occupancy insights and crowd monitoring. |
+| **Educational Institutions** | Administrators responsible for designated campus areas. | Restricted-area monitoring and security event alerts. |
+| **Parking Operators** | Personnel responsible for parking space utilization. | Vehicle detection, occupancy monitoring, and parking violation alerts. |
+| **Business Owners** | Organizations managing restaurants, offices, and commercial facilities. | Centralized monitoring and actionable event summaries. |
+| **System Administrators** | Personnel responsible for operating and maintaining Lenz. | Camera configuration, system health, access management, and event logs. |
+
+---
+### Operational Requirements
+
+| Parameter | Description |
+|---|---|
+| **Video Input** | Compatible CCTV streams, supported cameras, or uploaded video files. |
+| **Monitoring Frequency** | Configurable frame processing depending on the model and hardware. |
+| **Detection Categories** | Supported objects, crowd conditions, and predefined events. |
+| **Alert Generation** | Alerts based on configured detection rules and thresholds. |
+| **Event Records** | Event category, timestamp, camera identifier, and available detection metadata. |
+| **Human Verification** | Operator review of alerts before consequential action. |
+| **Scalability** | Ability to add supported camera feeds as system capacity permits. |
+| **Privacy Requirements** | Controlled access to footage, limited retention, and appropriate authorization. |
+
+---
+## 4. Existing Gap vs Lenz Improvement
+
+### Traditional CCTV vs Lenz
+
+Traditional CCTV systems primarily record footage, whereas Lenz aims
+to analyse supported video feeds and surface relevant events for review.
+
+The following conceptual comparison illustrates the intended
+capabilities of the proposed system.
+
+![Traditional CCTV vs Lenz Capability Comparison](assets/lenz_capability_comparison.png)
+
+**Note:** The scores in this graph are illustrative values used to
+visualize the proposed concept. They are not measured benchmark
+results, verified model accuracy, or evidence of actual system
+performance. They should be replaced with results from controlled
+testing when available.
+
+---
+
+
+
