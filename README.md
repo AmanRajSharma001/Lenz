@@ -214,8 +214,259 @@ xychart-beta
 | **Human Verification** | Allows security personnel to review alerts before taking action. |
 | **Centralized Monitoring** | Helps operators manage supported camera feeds, alerts, and incident information from one interface. |
 
-### Important Note
+## 1. System Workflow
 
-The graph scores represent illustrative capability estimates for explaining the project's intended value. They are not measured accuracy percentages, validated performance metrics, or guaranteed improvements.
+LENZ transforms conventional CCTV infrastructure into an AI-assisted surveillance system. It processes supported camera feeds, analyzes video frames, detects predefined events, and provides alerts and summaries to help security personnel make informed decisions.
 
-Actual performance depends on the selected AI models, camera quality, lighting conditions, camera placement, network connectivity, and testing results. LENZ AI is designed to assist human operators, not replace human judgment or emergency services.
+### System Workflow Diagram
+
+```mermaid
+flowchart LR
+    A["CCTV Cameras"] --> B["Video Input"]
+    B --> C["Frame Extraction"]
+    C --> D["Video Preprocessing"]
+    D --> E["AI Detection Engine"]
+    E --> F["Event Analysis"]
+    F --> G["Alert Generation"]
+    G --> H["Human Verification"]
+    H --> I["Incident Response"]
+    F --> J["Event Summaries"]
+    J --> K["Monitoring Dashboard"]
+    G --> K
+```
+
+### System Workflow Explanation
+
+| Step | Component | Description |
+|---|---|---|
+| 1 | CCTV Cameras | Uses existing camera infrastructure as the video source. |
+| 2 | Video Input | Receives video streams or recorded footage, depending on the integration. |
+| 3 | Frame Extraction | Extracts individual frames or selected video segments for analysis. |
+| 4 | Video Preprocessing | Prepares frames for analysis through resizing, format conversion, and other required operations. |
+| 5 | AI Detection Engine | Applies supported computer vision models to identify relevant objects, activities, or events. |
+| 6 | Event Analysis | Evaluates model outputs against configured detection rules. |
+| 7 | Alert Generation | Creates notifications when configured event conditions are satisfied. |
+| 8 | Human Verification | Enables authorized personnel to review alerts and assess their context. |
+| 9 | Incident Response | Supports appropriate follow-up actions by responsible security personnel. |
+| 10 | Event Summaries | Organizes detected events to help operators locate relevant footage. |
+| 11 | Monitoring Dashboard | Presents available alerts, detection results, and event information in a centralized interface. |
+
+**Note:** Actual camera connectivity, live-stream processing, alert delivery, and dashboard integrations depend on the implemented modules and deployment configuration.
+
+---
+
+## 2. Problem Understanding & Approach
+
+### Root Cause Analysis
+
+Traditional CCTV systems primarily record video footage. Security personnel must often monitor multiple camera feeds, identify important events, and search recordings manually. LENZ aims to reduce this operational burden through AI-assisted video analysis.
+
+| Problem Area | Root Cause | Impact on Security Teams |
+|---|---|---|
+| Manual Camera Monitoring | Multiple camera feeds require continuous human attention. | Important events may be missed during prolonged monitoring. |
+| Delayed Incident Detection | Recorded footage may require manual inspection before an incident is recognized. | Investigation and response may be delayed. |
+| Limited Crowd Visibility | Crowd levels are difficult to estimate consistently through manual observation. | Potential overcrowding may not be recognized early. |
+| Manual Parking Monitoring | Staff must observe parking areas to identify predefined violations. | Parking violations may remain unnoticed. |
+| Time-Consuming Footage Review | Locating a particular incident requires searching recordings. | Investigation takes additional time and effort. |
+| Lack of Event-Based Insights | Traditional recording systems do not inherently provide AI-generated event summaries. | Operators may struggle to locate relevant video segments quickly. |
+| Fragmented Security Operations | Camera footage, alerts, and incident records may be handled separately. | Coordination and investigation can become less efficient. |
+
+### Problem Analysis Flowchart
+
+```mermaid
+flowchart TD
+    A(["Start: CCTV Surveillance"]) --> B["Video Footage Recorded"]
+    B --> C["Manual Monitoring and Review"]
+    C --> D{"Important Event Detected?"}
+
+    D -- "No" --> E["Continue Monitoring"]
+    E --> C
+
+    D -- "Yes" --> F["Operator Reviews Footage"]
+    F --> G{"Event Requires Action?"}
+
+    G -- "No" --> H["Record or Dismiss Event"]
+    G -- "Yes" --> I["Investigate the Incident"]
+
+    H --> J["Continue Surveillance"]
+    I --> K["Coordinate Appropriate Response"]
+    K --> J
+
+    J --> L(["End of Review Cycle"])
+```
+
+### Understanding the Problem Flowchart
+
+1. **CCTV Surveillance:** Cameras record activities in the monitored environment.
+2. **Manual Monitoring:** Security personnel observe the available footage.
+3. **Event Detection:** An operator identifies a potentially important event.
+4. **Event Verification:** The operator checks whether the event requires further investigation.
+5. **Incident Investigation:** Relevant footage is reviewed to understand what happened.
+6. **Response Coordination:** Personnel take appropriate action based on the verified situation.
+
+The central problem is that traditional CCTV recording alone does not guarantee automated event detection or timely alerts.
+
+### Existing System vs Proposed LENZ Solution
+
+| Existing System | Proposed LENZ Improvement |
+|---|---|
+| Operators manually monitor camera feeds. | AI-assisted analysis helps identify supported events. |
+| Incidents may be identified after manual review. | Configured detection rules can generate alerts when supported events are detected. |
+| Crowd levels are estimated manually. | Computer vision can estimate crowd density in supported camera views. |
+| Parking violations require manual observation. | AI-assisted detection can identify predefined parking violations where supported. |
+| Large volumes of footage require manual searching. | Event-based summaries help operators locate relevant footage. |
+| Security teams investigate reports manually. | Detection results and alerts can support a more organized investigation workflow. |
+
+---
+
+## 3. Solution Strategy
+
+LENZ uses an AI-assisted video analysis pipeline to convert CCTV footage into useful event information. Its goal is to support security teams with detection, monitoring, and investigation rather than replace human judgment.
+
+### Solution Workflow Diagram
+
+```mermaid
+flowchart TD
+    A(["Start: CCTV Video Input"]) --> B["Receive Video Stream or Recording"]
+    B --> C["Extract Video Frames"]
+    C --> D["Preprocess Frames"]
+    D --> E["Run Supported AI Models"]
+    E --> F["Analyze Detection Results"]
+
+    F --> G{"Relevant Event Detected?"}
+
+    G -- "No" --> H["Continue Video Analysis"]
+    H --> C
+
+    G -- "Yes" --> I["Apply Event Detection Rules"]
+    I --> J{"Event Meets Alert Criteria?"}
+
+    J -- "No" --> K["Store or Display Detection Result"]
+    J -- "Yes" --> L["Generate Alert"]
+
+    K --> M["Update Monitoring Interface"]
+    L --> N["Notify Authorized Personnel"]
+    N --> O["Human Verification"]
+    O --> P{"Action Required?"}
+
+    P -- "No" --> Q["Record Review Outcome"]
+    P -- "Yes" --> R["Initiate Appropriate Response"]
+
+    Q --> M
+    R --> M
+    M --> S(["Continue Surveillance"])
+```
+
+### Solution Strategy Explanation
+
+#### 1. Video Input and Ingestion
+
+Receive video from supported CCTV cameras or recorded video files.
+
+**Objective:**
+- Use existing surveillance infrastructure where compatible.
+- Accept supported video formats and streams.
+- Establish a consistent input pipeline for further analysis.
+
+#### 2. Frame Extraction and Preprocessing
+
+Extract frames or selected video segments and prepare them for AI inference.
+
+**Objective:**
+- Standardize frame dimensions and formats.
+- Handle supported input resolutions.
+- Prepare video data for the selected computer vision models.
+
+#### 3. AI-Assisted Event Detection
+
+Apply suitable computer vision models to identify events supported by the implementation.
+
+Potential capabilities include:
+
+- Suspicious activity detection using supported models and predefined rules.
+- Crowd density estimation.
+- Vehicle and parking violation detection.
+- Identification of relevant objects or activities.
+
+**Important:** Suspicious activity is context-dependent. A model detecting an object or movement should not automatically be treated as proof of criminal activity.
+
+#### 4. Event Analysis and Rule Evaluation
+
+Evaluate the detection results against configured rules.
+
+**Objective:**
+- Filter detections according to supported conditions.
+- Reduce unnecessary notifications through appropriate filtering.
+- Associate detections with the relevant camera and time when that information is available.
+
+#### 5. Alert Generation
+
+Generate alerts when configured detection criteria are satisfied.
+
+An alert may include:
+
+- Event category.
+- Camera identifier.
+- Timestamp.
+- Detection information.
+- A reference to relevant footage, if available.
+
+Alert delivery channels depend on the implemented notification system.
+
+#### 6. Human Verification
+
+Allow authorized security personnel to examine the detection results and available footage.
+
+**Objective:**
+- Verify whether an alert represents a genuine concern.
+- Reduce the risk of acting on false detections.
+- Provide context before initiating a response.
+
+#### 7. Event Summaries and Investigation Support
+
+Organize relevant event information to help operators find important footage.
+
+**Objective:**
+- Reduce unnecessary manual searching.
+- Support incident investigation.
+- Make available event information easier to review.
+
+#### 8. Monitoring Dashboard
+
+Present available detections, alerts, and event information through the monitoring interface.
+
+**Objective:**
+- Improve visibility into detected events.
+- Help operators prioritize alerts.
+- Support coordination between security personnel and facility managers.
+
+---
+
+### Solution Components and Expected Benefits
+
+| Component | Function | Expected Benefit |
+|---|---|---|
+| Video Ingestion | Receives supported camera streams or video files. | Provides a common entry point for video analysis. |
+| Frame Processing | Extracts and prepares video frames. | Enables consistent model input. |
+| AI Detection Engine | Identifies supported objects, activities, or events. | Assists operators in recognizing relevant events. |
+| Crowd Monitoring | Estimates crowd density in supported views. | Helps identify potential overcrowding. |
+| Parking Intelligence | Detects predefined parking violations where supported. | Supports parking-area monitoring. |
+| Event Analysis | Evaluates detection results against configured rules. | Helps filter and categorize relevant events. |
+| Alert System | Generates notifications for qualifying events. | Supports timely investigation. |
+| Event Summarization | Organizes detected events and relevant footage references. | Helps operators locate incidents more efficiently. |
+| Human Verification | Allows personnel to review detections. | Supports informed decision-making. |
+| Monitoring Dashboard | Displays available event information and alerts. | Improves centralized visibility. |
+
+### Expected Outcome
+
+LENZ aims to make existing CCTV infrastructure more useful by adding AI-assisted detection, event-based monitoring, and investigation support.
+
+The expected operational benefits include:
+
+- Less dependence on continuous manual observation.
+- Faster identification of supported events.
+- Improved visibility into crowd conditions and parking violations.
+- Easier access to relevant footage.
+- More structured alert review and incident investigation.
+
+**Evaluation note:** These are intended benefits, not measured results. Actual detection accuracy, alert latency, false-positive rates, and operational improvements must be established through testing with representative video footage.
