@@ -1,0 +1,11 @@
+{
+  "name": "lenz-desktop",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Fast local computer vision desktop app",
+  "main": "main.js",
+  "scripts": { "start": "electron ." },
+  "dependencies": {
+    "electron": "^33.2.1"
+  }
+}
