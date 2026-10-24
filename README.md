@@ -18,8 +18,8 @@
 ## Table of Contents
 
 1. [Problem Statement](#1-problem-statement)
-2. [Proposed Solution](#3-proposed-solution)
-3. [Target Users](#2-target-users)
+2. [Proposed Solution](#2-proposed-solution)
+3. [Target Users](#3-target-users)
 4. [System Workflow](#4-system-workflow)
 5. [AI & Computer Vision Approach](#5-ai--computer-vision-approach)
 6. [Tech](#6-tech)
