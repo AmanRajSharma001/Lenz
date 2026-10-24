@@ -107,11 +107,11 @@ potential problems faster and make informed decisions.
 ---
 ## 3. Target Users
 
-The Lenz system is designed for organizations that already use CCTV
-cameras and want to improve surveillance through AI-powered monitoring.
+The **Lenz AI Surveillance System** is designed for organizations that already use CCTV cameras and want to improve security monitoring, crowd management, and incident response through AI-powered video analysis.
+
+### Target User Flowchart
 
 ```mermaid
-flowchart TD
 flowchart TD
     A["LENZ AI Surveillance System"]
 
@@ -127,78 +127,45 @@ flowchart TD
     D --> J["Occupancy Monitoring"]
     E --> K["Restricted Area Monitoring"]
     F --> L["Vehicle and Parking Detection"]
-    G --> M["Suspicious Activity Alerts"]
+    G --> M["Security and Incident Monitoring"]
 
-    style A fill:#EDE9FE,stroke:#8B5CF6,color:#222
-    style B fill:#EDE9FE,stroke:#8B5CF6,color:#222
-    style C fill:#EDE9FE,stroke:#8B5CF6,color:#222
-    style D fill:#EDE9FE,stroke:#8B5CF6,color:#222
-    style E fill:#EDE9FE,stroke:#8B5CF6,color:#222
-    style F fill:#EDE9FE,stroke:#8B5CF6,color:#222
-    style G fill:#EDE9FE,stroke:#8B5CF6,color:#222
----
-### Target Market Analysis
+    H --> N["AI-Based Event Detection"]
+    I --> N
+    J --> N
+    K --> N
+    L --> N
+    M --> N
+
+    N --> O["Alerts and Event Summaries"]
+    O --> P["Human Verification and Response"]
+```
+
+### Target User Overview
 
 | Category | Details |
 |---|---|
-| **Geographical Focus** | India 🇮🇳 — with potential for global adoption |
-| **Primary Market** | Organizations using existing CCTV infrastructure |
-| **Target Customers** | Railway stations, malls, hospitals, educational institutions, offices, and parking facilities |
-| **Existing Infrastructure** | CCTV cameras and compatible video feeds |
-| **Core Opportunity** | Transforming passive video surveillance into AI-assisted monitoring |
-| **Primary Objective** | Improve situational awareness and help identify important events faster |
-| **Initial Deployment Strategy** | Pilot deployment in a controlled environment with a limited number of cameras |
-| **Expansion Strategy** | Extend to additional camera feeds and monitoring locations after validation |
+| **Geographical Focus** | Public and private facilities requiring CCTV-based monitoring. |
+| **Primary Target Users** | Railway stations, shopping malls, hospitals, educational institutions, parking facilities, restaurants, and offices. |
+| **System Administrators** | Personnel responsible for camera configuration, system maintenance, access management, and event logs. |
+| **Security Personnel** | Staff responsible for monitoring alerts, reviewing incidents, and coordinating appropriate responses. |
+| **Facility Managers** | Personnel responsible for occupancy monitoring, crowd management, and operational safety. |
+| **Current Market Gap** | Traditional CCTV systems primarily record footage, requiring operators to manually monitor feeds and review recordings. |
+| **Proposed Solution** | AI-assisted video analysis to identify supported events, generate alerts, and help operators locate relevant footage. |
 
----
-
-### User Segmentation
+### Target User Segments
 
 | User Segment | Description | Key Needs |
 |---|---|---|
-| **Security Personnel** | Personnel responsible for monitoring camera feeds and responding to incidents. | Event alerts, suspicious activity review, and faster incident identification. |
-| **Railway Authorities** | Teams responsible for station safety and passenger movement. | Crowd density estimation and overcrowding alerts. |
-| **Mall Administrators** | Managers overseeing public areas and parking facilities. | Crowd monitoring, vehicle detection, and security alerts. |
-| **Hospital Administrators** | Teams managing patient waiting areas and public corridors. | Occupancy insights and crowd monitoring. |
-| **Educational Institutions** | Administrators responsible for designated campus areas. | Restricted-area monitoring and security event alerts. |
-| **Parking Operators** | Personnel responsible for parking space utilization. | Vehicle detection, occupancy monitoring, and parking violation alerts. |
-| **Business Owners** | Organizations managing restaurants, offices, and commercial facilities. | Centralized monitoring and actionable event summaries. |
-| **System Administrators** | Personnel responsible for operating and maintaining Lenz. | Camera configuration, system health, access management, and event logs. |
+| **Security Teams** | Personnel monitoring CCTV feeds and responding to security incidents. | Timely alerts, event summaries, and faster incident investigation. |
+| **Facility Managers** | Staff overseeing crowd levels, occupancy, and facility operations. | Crowd-density estimates, occupancy monitoring, and operational insights. |
+| **System Administrators** | Personnel configuring and maintaining the surveillance system. | Camera management, system health monitoring, access control, and event logs. |
+| **Organizations** | Public and private facilities that already use CCTV cameras. | Scalable monitoring, reduced manual review, and centralized event visibility. |
 
----
-### Operational Requirements
+### Project Objectives
 
 | Parameter | Description |
 |---|---|
-| **Video Input** | Compatible CCTV streams, supported cameras, or uploaded video files. |
-| **Monitoring Frequency** | Configurable frame processing depending on the model and hardware. |
-| **Detection Categories** | Supported objects, crowd conditions, and predefined events. |
-| **Alert Generation** | Alerts based on configured detection rules and thresholds. |
-| **Event Records** | Event category, timestamp, camera identifier, and available detection metadata. |
-| **Human Verification** | Operator review of alerts before consequential action. |
-| **Scalability** | Ability to add supported camera feeds as system capacity permits. |
-| **Privacy Requirements** | Controlled access to footage, limited retention, and appropriate authorization. |
-
----
-## 4. Existing Gap vs Lenz Improvement
-
-### Traditional CCTV vs Lenz
-
-Traditional CCTV systems primarily record footage, whereas Lenz aims
-to analyse supported video feeds and surface relevant events for review.
-
-The following conceptual comparison illustrates the intended
-capabilities of the proposed system.
-
-![Traditional CCTV vs Lenz Capability Comparison](assets/lenz_capability_comparison.png)
-
-**Note:** The scores in this graph are illustrative values used to
-visualize the proposed concept. They are not measured benchmark
-results, verified model accuracy, or evidence of actual system
-performance. They should be replaced with results from controlled
-testing when available.
-
----
-
-
-
+| **Primary Objective** | Improve CCTV monitoring through AI-assisted video analysis and event detection. |
+| **Crowd Monitoring** | Estimate crowd density in supported camera views to assist with crowd management. |
+| **Security Monitoring** | Identify predefined security-related events for human review. |
+| **Occupancy Monitoring** | Help facility more efficiently and support faster, more informed responses. |
