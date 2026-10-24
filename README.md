@@ -169,3 +169,53 @@ flowchart TD
 | **Crowd Monitoring** | Estimate crowd density in supported camera views to assist with crowd management. |
 | **Security Monitoring** | Identify predefined security-related events for human review. |
 | **Occupancy Monitoring** | Help facility more efficiently and support faster, more informed responses. |
+
+## Existing Gap vs LENZ AI Improvement
+
+The following comparison illustrates the intended capabilities of traditional CCTV monitoring and the proposed LENZ AI Surveillance System. Scores are illustrative design targets, not measured benchmark results.
+
+```mermaid
+xychart-beta
+    title "Without LENZ AI (Traditional CCTV)"
+    x-axis ["Threat Detection", "Crowd Monitoring", "Parking", "Event Review", "Response"]
+    y-axis "Capability Score (%)" 0 --> 100
+    bar [25, 20, 30, 15, 10]
+```
+
+```mermaid
+xychart-beta
+    title "With LENZ AI (Proposed System)"
+    x-axis ["Threat Detection", "Crowd Monitoring", "Parking", "Event Review", "Response"]
+    y-axis "Capability Score (%)" 0 --> 100
+    bar [85, 80, 75, 90, 70]
+```
+
+### Existing System Limitations vs Impact of LENZ AI
+
+| Limitation in Existing Systems | Impact on Security Teams and Facility Managers |
+|---|---|
+| **Continuous manual CCTV monitoring** | Operators must watch multiple camera feeds, increasing workload and the possibility of missing important events. |
+| **Delayed incident detection** | Suspicious activities may be noticed only after an incident occurs or someone reports it. |
+| **Manual crowd monitoring** | Estimating crowd density manually makes it difficult to identify overcrowding early in supported camera views. |
+| **Manual parking surveillance** | Parking violations may go unnoticed when staff cannot continuously monitor every parking area. |
+| **Time-consuming footage review** | Security personnel may need to search long video recordings to locate a specific incident. |
+| **Limited real-time operational insights** | Facility managers may lack timely information about crowd levels, occupancy, and predefined security events. |
+| **Fragmented incident response** | Staff may need to switch between camera feeds, reports, and communication channels to investigate an incident. |
+
+### How LENZ AI Improves the Existing System
+
+| LENZ AI Capability | Expected Operational Benefit |
+|---|---|
+| **AI-Assisted Threat Detection** | Identifies predefined suspicious activities or security-related events supported by the selected model. |
+| **Crowd Density Estimation** | Helps operators monitor crowd levels and identify potential overcrowding in supported camera views. |
+| **Parking Violation Detection** | Detects predefined parking violations when the camera view and detection model support the relevant conditions. |
+| **Event-Based Video Summaries** | Helps operators locate relevant footage without manually reviewing every recording. |
+| **Automated Alerts** | Notifies authorized personnel when configured detection rules are triggered. |
+| **Human Verification** | Allows security personnel to review alerts before taking action. |
+| **Centralized Monitoring** | Helps operators manage supported camera feeds, alerts, and incident information from one interface. |
+
+### Important Note
+
+The graph scores represent illustrative capability estimates for explaining the project's intended value. They are not measured accuracy percentages, validated performance metrics, or guaranteed improvements.
+
+Actual performance depends on the selected AI models, camera quality, lighting conditions, camera placement, network connectivity, and testing results. LENZ AI is designed to assist human operators, not replace human judgment or emergency services.
