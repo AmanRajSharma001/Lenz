@@ -89,22 +89,8 @@ potential problems faster and make informed decisions.
 | **Information Overload** | Cameras generate large volumes of footage throughout the day. | Reviewing recordings consumes time and effort. |
 | **Delayed Incident Response** | Conventional systems may require someone to notice an incident before action is taken. | Slower security response. |
 | **Limited Actionable Insights** | Raw video footage does not automatically provide structured event summaries. | Difficult monitoring and decision-making. |
-
 ---
 
-### Current Situation vs Desired Outcome
-
-| Current Situation | Desired Outcome |
-|---|---|
-| Cameras continuously record video. | AI analyses video frames to identify relevant events. |
-| Operators manually monitor camera feeds. | Automated event detection assists human operators. |
-| Incidents may be noticed after they occur. | Timely alerts help operators investigate potential incidents. |
-| Crowd levels are estimated manually. | Computer vision estimates crowd density in supported camera views. |
-| Parking violations require manual observation. | AI-assisted detection identifies predefined parking violations. |
-| Large volumes of footage require manual review. | Event-based summaries help operators locate relevant footage. |
-| Security teams react after receiving reports. | Intelligent monitoring supports faster, more informed responses. |
-
----
 ## 3. Target Users
 
 The **Lenz AI Surveillance System** is designed for organizations that already use CCTV cameras and want to improve security monitoring, crowd management, and incident response through AI-powered video analysis.
