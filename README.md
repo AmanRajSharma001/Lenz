@@ -18,8 +18,8 @@
 ## Table of Contents
 
 1. [Problem Statement](#1-problem-statement)
-2. [Target Users](#2-target-users)
-3. [Proposed Solution](#3-proposed-solution)
+2. [Proposed Solution](#3-proposed-solution)
+3. [Target Users](#2-target-users)
 4. [System Workflow](#4-system-workflow)
 5. [AI & Computer Vision Approach](#5-ai--computer-vision-approach)
 6. [Tech](#6-tech)
@@ -77,8 +77,26 @@ potential problems faster and make informed decisions.
 | **Limited Actionable Insights** | Raw video footage does not automatically provide structured event summaries. | Difficult monitoring and decision-making. |
 
 ---
+## 2. Proposed Solution
 
-## 2. Target Users
+LENZ transforms existing CCTV infrastructure into an intelligent monitoring system that helps security teams identify important events faster.
+
+### Core Solution Components
+
+| Component | Function | Benefit |
+|---|---|---|
+| Video Ingestion | Receives CCTV video streams. | Centralized monitoring. |
+| AI Analysis Engine | Analyzes video for supported events. | Automated event detection. |
+| Threat Detection | Identifies predefined suspicious activities. | Faster security response. |
+| Stampede Prevention | Estimates crowd density. | Better crowd management. |
+| Parking Intelligence | Detects predefined parking violations. | Improved parking management. |
+| Alert System | Generates event-based notifications. | Faster incident awareness. |
+| Dashboard | Displays alerts and monitoring insights. | Easier supervision. |
+| Human Verification | Enables authorized staff to review events. | More responsible decision-making. |
+
+---
+
+## 3. Target Users
 
 The **Lenz AI Surveillance System** is designed for organizations that already use CCTV cameras and want to improve security monitoring, crowd management, and incident response through AI-powered video analysis.
 
@@ -136,25 +154,6 @@ flowchart TD
 
 ---
 
-
-## 3. Proposed Solution
-
-LENZ transforms existing CCTV infrastructure into an intelligent monitoring system that helps security teams identify important events faster.
-
-### Core Solution Components
-
-| Component | Function | Benefit |
-|---|---|---|
-| Video Ingestion | Receives CCTV video streams. | Centralized monitoring. |
-| AI Analysis Engine | Analyzes video for supported events. | Automated event detection. |
-| Threat Detection | Identifies predefined suspicious activities. | Faster security response. |
-| Stampede Prevention | Estimates crowd density. | Better crowd management. |
-| Parking Intelligence | Detects predefined parking violations. | Improved parking management. |
-| Alert System | Generates event-based notifications. | Faster incident awareness. |
-| Dashboard | Displays alerts and monitoring insights. | Easier supervision. |
-| Human Verification | Enables authorized staff to review events. | More responsible decision-making. |
-
----
 
 ## 4. System Workflow
 
