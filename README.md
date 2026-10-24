@@ -235,11 +235,19 @@ The system uses computer vision to analyze supported video events and assist sec
 
 ---
 
-## 8. Tech
+## Tech Stack
 
-- three points from jash.
-
----
+| Layer | Technology | Role in SmartSpace |
+|---|---|---|
+| **Video input** | OpenCV | Reads live RTSP streams or recorded video, samples frames (~5 FPS), draws zones, timers and alerts on the output |
+| **Detection** | YOLOv8 (Ultralytics) | Detects people in every sampled frame |
+| **Tracking** | ByteTrack (built into Ultralytics) | Gives each person a persistent ID, so we can measure how long the same person stays in a zone |
+| **Table state model** | Custom YOLOv8n trained on Roboflow data (trained on Kaggle GPU) | Classifies tables as `occupied`, `unoccupied-clean` or `unoccupied-dirty` |
+| **Zone and rule engine** | Python | Zone polygons, debounced EMPTY/OCCUPIED state, dwell timers, idle detection and the alert rules |
+| **Reasoning layer** | Gemma 4 (local, via Hugging Face Transformers or llama.cpp) | Second-stage check on flagged events only, e.g. "in vain or just reading?", "suspicious or waiting?" |
+| **Backend** | FastAPI + SQLite | REST API, WebSocket live updates, and storage for zones, events and the suspicious-activity log |
+| **Frontend** | React + Tailwind | Live dashboard with zone status cards, timers, alert feed and analytics |
+| **Alerts** | Telegram Bot API | Real-time alerts to the manager's phone, with a cooldown to avoid spam |
 
 ## 9. Database Design
 
