@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  🚨 Threat Detection • 👥 Stampede Prevention • 🚗 Parking Intelligence • 📊 Real-Time Insights
+  Threat Detection • Stampede Prevention • Parking Intelligence • Real-Time Insights
 </p>
 
 ---
