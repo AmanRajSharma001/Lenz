@@ -126,33 +126,12 @@ flowchart TD
     O --> P["Human Verification and Response"]
 ```
 
-### Target User Overview
-
-| Category | Details |
-|---|---|
-| **Geographical Focus** | Public and private facilities requiring CCTV-based monitoring. |
-| **Primary Target Users** | Railway stations, shopping malls, hospitals, educational institutions, parking facilities, restaurants, and offices. |
-| **System Administrators** | Personnel responsible for camera configuration, system maintenance, access management, and event logs. |
-| **Security Personnel** | Staff responsible for monitoring alerts, reviewing incidents, and coordinating appropriate responses. |
-| **Facility Managers** | Personnel responsible for occupancy monitoring, crowd management, and operational safety. |
-| **Current Market Gap** | Traditional CCTV systems primarily record footage, requiring operators to manually monitor feeds and review recordings. |
-| **Proposed Solution** | AI-assisted video analysis to identify supported events, generate alerts, and help operators locate relevant footage. |
-
-### Target User Segments
-
-| User Segment | Description | Key Needs |
-|---|---|---|
-| **Security Teams** | Personnel monitoring CCTV feeds and responding to security incidents. | Timely alerts, event summaries, and faster incident investigation. |
-| **Facility Managers** | Staff overseeing crowd levels, occupancy, and facility operations. | Crowd-density estimates, occupancy monitoring, and operational insights. |
-| **System Administrators** | Personnel configuring and maintaining the surveillance system. | Camera management, system health monitoring, access control, and event logs. |
-| **Organizations** | Public and private facilities that already use CCTV cameras. | Scalable monitoring, reduced manual review, and centralized event visibility. |
-
 ### Project Objectives
 
 | Parameter | Description |
 |---|---|
 | **Primary Objective** | Improve CCTV monitoring through AI-assisted video analysis and event detection. |
-| **Crowd Monitoring** | Estimate crowd density in supported camera views to assist with crowd management. |
+| **Stampede Prevention** | Estimate crowd density in supported camera views to assist with crowd management. |
 | **Security Monitoring** | Identify predefined security-related events for human review. |
 | **Occupancy Monitoring** | Help facility more efficiently and support faster, more informed responses. |
 
