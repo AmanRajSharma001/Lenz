@@ -1,0 +1,21 @@
+{
+  "name": "lenz-pro",
+  "version": "2.0.0",
+  "private": true,
+  "description": "LENZ: describe your use case, point any camera, get live analytics",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "dependencies": { "electron": "^33.2.1" },
+  "devDependencies": { "electron-builder": "^25.1.8" },
+  "build": {
+    "appId": "com.lenz.pro",
+    "productName": "LENZ",
+    "files": ["main.js", "preload.js", "app.py", "requirements.txt", "static/**", "lenz.config.json"],
+    "mac": { "extendInfo": { "NSCameraUsageDescription": "LENZ uses your camera to produce live analytics." } },
+    "win": { "target": "nsis" },
+    "linux": { "target": "AppImage" }
+  }
+}

@@ -1,0 +1,126 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LENZ | Live camera analytics for your use case</title>
+<meta name="description" content="Describe how you want to use your camera and LENZ builds the analytics: occupancy, dwell time and peak hours.">
+<link rel="stylesheet" href="/static/style.css">
+<body>
+<header>
+  <span class="brand">LENZ</span>
+  <select id="cam" aria-label="Camera"></select>
+  <button id="toggle" class="primary">Turn camera on</button>
+  <button id="pause" disabled>Pause analysis</button>
+  <button id="snap" disabled>Snapshot</button>
+  <select id="auto" aria-label="Auto stop timer">
+    <option value="0">No auto stop</option><option value="15">Stop after 15 min</option>
+    <option value="30">Stop after 30 min</option><option value="60">Stop after 1 hour</option></select>
+  <span class="spacer"></span>
+  <span class="timer" id="timer" title="Session time">00:00:00</span>
+  <a href="/export.csv" download>Export report</a>
+  <button id="reset" class="danger">Reset data</button>
+</header>
+<div class="layout">
+  <section>
+    <div class="stage">
+      <video id="v" playsinline muted></video><canvas id="o"></canvas>
+      <div class="idle" id="idle">Camera is off. Choose a camera and turn it on. Your system will ask for permission the first time.</div>
+      <span class="badge" id="fps">idle</span>
+    </div>
+  </section>
+  <aside>
+    <div class="panel"><h2 id="stitle">No use case yet</h2><p id="ssum" style="color:var(--mute);margin:0">Describe your goal below to configure LENZ.</p>
+      <div id="train" hidden><p id="tmsg"></p><button id="trainbtn">Train custom model</button></div></div>
+    <div class="panel"><h2>Live now</h2><div id="counts"><div class="skel"></div></div>
+      <div id="occ"></div></div>
+    <div class="panel"><h2>Time spent</h2><div id="dwell" style="color:var(--mute)">Turn on dwell tracking by mentioning visit length in your prompt.</div></div>
+    <div class="panel"><h2>Peak hours today</h2><div class="bars" id="bars"></div><div class="axis"><span>0h</span><span>6h</span><span>12h</span><span>18h</span><span>23h</span></div></div>
+  </aside>
+</div>
+<section class="chat" aria-label="Use case prompt">
+  <div class="log" id="log"></div>
+  <div class="compose">
+    <textarea id="prompt" rows="2" placeholder="Example: I run a 40 seat restaurant. Show table and seat occupancy, how long guests stay, and my busiest hours each week."></textarea>
+    <button id="send" class="primary">Build analytics</button>
+  </div>
+</section>
+<footer>Frames are analysed on this computer. <a href="/help">Help</a> / <a href="/privacy">Privacy policy</a> / <a href="/terms">Terms of service</a> / Support replies within one business day.</footer>
+<script>
+const $=id=>document.getElementById(id);
+let stream=null,running=false,paused=false,t0=0,tick=null,spec=null,frames=0,fpsT=performance.now();
+const off=document.createElement('canvas');
+
+async function listCams(){
+  const d=(await navigator.mediaDevices.enumerateDevices()).filter(x=>x.kind==='videoinput');
+  $('cam').innerHTML=d.map((x,i)=>`<option value="${x.deviceId}">${x.label||'Camera '+(i+1)}</option>`).join('')||'<option>No camera found</option>';
+}
+async function start(){
+  try{
+    stream=await navigator.mediaDevices.getUserMedia({video:{deviceId:$('cam').value?{exact:$('cam').value}:undefined,width:{ideal:1280}}});
+  }catch(e){$('idle').textContent='Camera access was blocked or unavailable. Allow camera access in your system settings and try again.';return}
+  await listCams();$('v').srcObject=stream;await $('v').play();
+  $('idle').hidden=true;running=true;paused=false;t0=Date.now();
+  $('toggle').textContent='Turn camera off';$('pause').disabled=$('snap').disabled=false;
+  tick=setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);
+    $('timer').textContent=[s/3600,s/60%60,s%60].map(x=>String(Math.floor(x)).padStart(2,'0')).join(':');
+    const m=+$('auto').value;if(m&&s>=m*60)stop();},500);
+  loop();
+}
+function stop(){
+  running=false;clearInterval(tick);if(stream)stream.getTracks().forEach(t=>t.stop());
+  $('v').srcObject=null;$('idle').hidden=false;$('idle').textContent='Camera is off.';
+  $('toggle').textContent='Turn camera on';$('pause').disabled=$('snap').disabled=true;$('fps').textContent='idle';
+  $('o').getContext('2d').clearRect(0,0,$('o').width,$('o').height);
+}
+async function loop(){
+  while(running){
+    if(paused){await new Promise(r=>setTimeout(r,200));continue}
+    const v=$('v');if(!v.videoWidth){await new Promise(r=>setTimeout(r,100));continue}
+    off.width=640;off.height=Math.round(640*v.videoHeight/v.videoWidth);
+    off.getContext('2d').drawImage(v,0,0,off.width,off.height);
+    const blob=await new Promise(r=>off.toBlob(r,'image/jpeg',.7));
+    try{const r=await fetch('/infer',{method:'POST',body:blob});render(await r.json());}catch(e){await new Promise(r=>setTimeout(r,500))}
+    frames++;const n=performance.now();if(n-fpsT>1000){$('fps').textContent=Math.round(frames*1000/(n-fpsT))+' fps';frames=0;fpsT=n}
+  }
+}
+function render(d){
+  if(d.error)return;
+  const c=$('o'),v=$('v'),W=c.width=c.clientWidth,H=c.height=c.clientHeight,x=c.getContext('2d');
+  const s=Math.min(W/v.videoWidth,H/v.videoHeight),w=v.videoWidth*s,h=v.videoHeight*s,ox=(W-w)/2,oy=(H-h)/2;
+  x.lineWidth=2;x.font='12px Arial';
+  d.dets.forEach(k=>{const[a,b,e,f]=k.box;x.strokeStyle='#d2a24c';x.strokeRect(ox+a*w,oy+b*h,(e-a)*w,(f-b)*h);
+    x.fillStyle='#1c2528';const t=k.name+(k.id!=null?' #'+k.id:'');x.fillRect(ox+a*w,oy+b*h-16,x.measureText(t).width+8,16);
+    x.fillStyle='#e4dfd0';x.fillText(t,ox+a*w+4,oy+b*h-4)});
+  $('counts').innerHTML=Object.entries(d.counts).map(([k,n])=>`<div class="row"><span>${k}</span><b>${n}</b></div>`).join('')||'<span style="color:var(--mute)">Nothing detected yet</span>';
+  if(d.containers&&d.containers.total){const p=Math.round(100*d.containers.occupied/d.containers.total);
+    $('occ').innerHTML=`<div class="big">${p}%</div><div>${d.containers.occupied} of ${d.containers.total} seats or tables occupied</div>`}
+  if(d.dwell){const f=s=>s>=60?(s/60).toFixed(1)+' min':Math.round(s)+' s';
+    $('dwell').innerHTML=`<div class="row"><span>People present</span><b>${d.dwell.active}</b></div><div class="row"><span>Longest current stay</span><b>${f(d.dwell.longest_live)}</b></div><div class="row"><span>Average completed stay</span><b>${f(d.dwell.avg_done)}</b></div><div class="row"><span>Completed visits</span><b>${d.dwell.visits_done}</b></div>`}
+  if(d.peaks){const m=Math.max(1,...d.peaks);$('bars').innerHTML=d.peaks.map((n,i)=>`<div class="${i===d.hour?'now':''}" style="height:${Math.max(3,100*n/m)}%" title="${i}h: ${n}"></div>`).join('')}
+}
+function say(t,u){const m=document.createElement('div');m.className='msg'+(u?' user':'');m.textContent=t;$('log').appendChild(m);$('log').scrollTop=1e9;return m}
+async function build(){
+  const p=$('prompt').value.trim();if(!p)return;$('prompt').value='';say(p,true);
+  const sk=document.createElement('div');sk.className='msg';sk.innerHTML='<div class="skel"></div><div class="skel" style="width:70%"></div>';$('log').appendChild(sk);
+  $('send').disabled=true;
+  try{const r=await fetch('/analyse',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:p})});
+    const d=await r.json();sk.remove();
+    if(d.error){say(d.error);return}
+    spec=d.spec;$('stitle').textContent=spec.title;$('ssum').textContent=spec.summary;
+    say('Ready. Tracking: '+[...spec.count_classes,...spec.container_classes].join(', ')+'. Metrics to watch: '+(spec.insights||[]).join('; ')+'.');
+    $('train').hidden=!spec.custom_classes.length;
+    if(spec.custom_classes.length)$('tmsg').textContent='Needs objects outside the base model: '+spec.custom_classes.join(', ')+'. Dataset: '+(spec.dataset||'Open Images')+'.';
+  }catch(e){sk.remove();say('Could not reach the vision engine.')}
+  $('send').disabled=false;
+}
+async function train(){
+  $('trainbtn').disabled=true;const r=await fetch('/train',{method:'POST'});if(!r.ok){$('tmsg').textContent=(await r.json()).error;$('trainbtn').disabled=false;return}
+  const t=setInterval(async()=>{const s=await (await fetch('/train/status')).json();$('tmsg').textContent=s.message;
+    if(s.state!=='running'){clearInterval(t);$('trainbtn').disabled=false}},3000);
+}
+$('toggle').onclick=()=>running?stop():start();
+$('pause').onclick=()=>{paused=!paused;$('pause').textContent=paused?'Resume analysis':'Pause analysis';$('fps').textContent=paused?'paused':'live'};
+$('snap').onclick=()=>{const c=document.createElement('canvas');c.width=$('v').videoWidth;c.height=$('v').videoHeight;c.getContext('2d').drawImage($('v'),0,0);
+  const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='lenz-snapshot-'+Date.now()+'.png';a.click()};
+$('reset').onclick=async()=>{if(confirm('Clear all visits and peak data?'))await fetch('/reset',{method:'POST'})};
+$('send').onclick=build;$('trainbtn').onclick=train;
+$('prompt').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();build()}});
+listCams();say('Tell me how you will use this camera and what you want to measure.');
+</script></body></html>
